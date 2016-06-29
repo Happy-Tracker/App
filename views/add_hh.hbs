@@ -1,0 +1,73 @@
+
+<!--this is a form but will need to go into a different page  -->
+
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>Add a Happy Hour</h4>
+      </div>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="venue_input">Venue name</label>
+          <input type="text" name="venue" id="venue_input" placeholder="Venue name">
+        </div>
+        <div class="form-group">
+          <label for="image_url_input">Image</label>
+          <input type="url" name="image_url" id="image_url_input" placeholder="Image url">
+        </div>
+        <!-- <div class="form-group">
+          <label for="neighborhood_input">Neighborhood</label>
+          <input type="text" name="neighborhood" id="neighborhood_input" placeholder="neighborhood">
+        </div> -->
+
+        <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Neighborhood
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#">Highland</a></li>
+          <li><a href="#">Cap Hill</a></li>
+          <li><a href="#">Lo-Hi</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div>
+
+        <div class="form-group">
+          <label for="address_input">Address</label>
+          <textarea name="address" rows="4" cols="40" id="address_input"></textarea>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" name="dayofweek" value="S">S</label>
+          <label><input type="checkbox" name="dayofweek" value="M">M</label>
+          <label><input type="checkbox" name="dayofweek" value="T">T</label>
+          <label><input type="checkbox" name="dayofweek" value="W">W</label>
+          <label><input type="checkbox" name="dayofweek" value="Th">Th</label>
+          <label><input type="checkbox" name="dayofweek" value="F">F</label>
+          <label><input type="checkbox" name="dayofweek" value="S">S</label>
+        </div>
+        <div class="form-group">
+          <label for="start_time">Start Time&colon; </label>
+          <input type="time" class="form-control" id="start_time">
+        </div>
+        <div class="form-group">
+          <label for="end_time">End Time&colon; </label>
+          <input type="time" class="form-control" id="end_time">
+        </div>
+        <div class="form-group">
+          <label for="description_input">Description</label>
+          <textarea class="form-control" rows="3" id="description_input"></textarea>
+        </div>
+
+            <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+      </form>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

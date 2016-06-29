@@ -6,6 +6,7 @@ body {
 a {
     color: #00B7FF;
 }
+<<<<<<< HEAD
 h1 {
     color: red;
 }
@@ -13,4 +14,13 @@ nav {
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+=======
+
+#fav-btn{
+  margin-left: 1rem;
+}
+
+.user-buttons{
+  margin: 3.5px ;
+>>>>>>> development
 }
