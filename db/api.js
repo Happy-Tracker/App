@@ -39,21 +39,7 @@ module.exports = {
 
     Neighborhood: {
         getNeighborhoods: () => knex('neighborhood'),
-        findNeighborhoodsByName: name => knex('neighborhood').where('name', name),
-        deleteLocation: (id) => {
-            router.get('/:id/delete', function(req, res) {
-                knex('location')
-                    .where({
-                        location_id: req.params.id
-                    })
-                    .andWhere({
-                        contributor_id: req.session.userID
-                    }).del()
-                    .then(function() {
-                        res.redirect('/');
-                    });
-            });
-        }
+        findNeighborhoodsByName: name => knex('neighborhood').where('name', name)
     },
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()

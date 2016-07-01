@@ -14,6 +14,7 @@ router.get('/:name', function(req, res, next) {
                 return result
             }, [])
             res.render('neighborhood', {
+                email: req.session.email,
                 api: process.env.GOOGLE_API_KEY,
                 sessionId: req.session.userID,
                 happyhours: splitList,
@@ -29,5 +30,7 @@ router.get('/get/locations', function(req, res, next) {
         })
     });
 });
+
+
 
 module.exports = router;
