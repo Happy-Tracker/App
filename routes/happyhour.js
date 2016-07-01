@@ -5,30 +5,33 @@ var db = require('../db/api');
 require('dotenv').config();
 
 router.get('/:id', function(req, res, next) {
-	console.log(req.params.id, 'rec.params.id');
-	knex('location').where({
-			id: req.params.id
-		}).first()
-		.then(record => {
-      console.log(record, 'record');
-      return knex('happy_hour').where({
-				'location_id': record.id
-			});
-      console.log(record.id, 'location id');
-		})
-		.then(data => {
-      console.log(data, 'the data!');
-      res.render('happyhour', {
-				name: data[0].name,
-				address: data[0].address,
-        url: data[0].url,
-        image_url: data[0].image_url,
-        neighborhood_name: data[0].neighborhood_name,
-        happy_hours: data[1],
-        api: process.env.GOOGLE_API_KEY // In case we want a map on this page.
-			});
-		});
-});
+	console.log(req.params.id);
+knex('location').join('happy_hour', 'location_id', 'location.id')
+.select(
+	'location.id as loc_id',
+	'location.name',
+	'happy_hour.id as hh_id',
+	'location.address',
+	'location.url',
+	'location.image_url',
+	'happy_hour.contributor_id',
+	'neighborhood_name',
+	'happy_hour.day',
+	'happy_hour.start',
+	'happy_hour.end'
+)
+.where({
+        'location.id': req.params.id
+    })
+
+    .then(function(data) {
+        console.log(data, 'the joined data!');
+        res.render('happyhour', {
+					info:data[0],
+					days:data
+        });
+    });
+})
 
 
 module.exports = router;
