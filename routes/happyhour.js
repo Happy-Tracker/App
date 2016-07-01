@@ -5,7 +5,6 @@ var db = require('../db/api');
 require('dotenv').config();
 
 router.get('/:id', function(req, res, next) {
-	console.log(req.params.id);
 knex('location').join('happy_hour', 'location_id', 'location.id')
 .select(
 	'location.id as loc_id',
@@ -25,13 +24,25 @@ knex('location').join('happy_hour', 'location_id', 'location.id')
     })
 
     .then(function(data) {
-        console.log(data, 'the joined data!');
+        // console.log(data, 'the joined data!');
         res.render('happyhour', {
 					info:data[0],
 					days:data
         });
     });
 })
+
+// router.get('/:id/delete', function(req, res) {
+//   console.log(id,'dirka');
+//     knex('location')
+//         .where({
+//             id: req.params.id
+//         })
+//         .del()
+//         .then(function() {
+//             res.redirect('/');
+//         });
+// });
 
 
 module.exports = router;

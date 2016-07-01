@@ -64,4 +64,16 @@ router.post('/addhh', function(req, res, next) {
     })
 });
 
+router.get('/happyhour/:id/delete', function(req, res) {
+  console.log(id,'dirka');
+    knex('location')
+        .where({
+            id: req.params.id
+        })
+        .del()
+        .then(function() {
+            res.redirect('/');
+        });
+});
+
 module.exports = router;
