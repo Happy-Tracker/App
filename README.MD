@@ -11,11 +11,11 @@ http://happy-tracker.herokuapp.com
 
 ## Created By
 
-* Lucy Follansbee
-* Andy Knolla
-* Christopher Comella
-* Evan McClaugherty
-* Zach Zimmerman
+* Lucy Follansbee (https://github.com/lucyf44)
+* Andy Knolla (https://github.com/andyknolla)
+* Christopher Comella (https://github.com/chrisco)
+* Evan McClaugherty (https://github.com/evan-mcclaugherty)
+* Zach Zimmerman (https://github.com/ZachDZimmerman)
 
 ## Key Technologies Used
 
