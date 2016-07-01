@@ -31,7 +31,7 @@
           <div class="collapse navbar-collapse user-buttons">
             <a type="button" class="btn btn-primary navbar-left" id="add-btn" data-toggle="modal" data-target="#create-hh">Add a Happy Hour</a>
             <a href='/home/logout ' type="button" class="btn btn-default navbar-right">Log Out</a>
-            <a type="button" class="btn btn-info navbar-right" id="fav-btn">Your Favorites</a>
+            <!-- <a type="button" class="btn btn-info navbar-right" id="fav-btn">Your Favorites</a> -->
             <p class="navbar-text navbar-right">Logged in as {{email}}</p>
           </div>
         </div>
@@ -130,13 +130,9 @@
             <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
           </div>
           </form>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- END CREATE HAPPY HOUR MODAL -->
     <!-- if the user is not logged in this should be their navbar, with login button -->
   {{else}}
@@ -269,14 +265,14 @@
             <div class="thumbnail">
               <img class="img-responsive venue-img" src="{{this.image_url}}">
               <div class="caption">
-                {{#if ../../sessionId}}
+                <!-- {{#if ../../sessionId}}
                   <form action="/favorite/{{this.name}}" method="post">
                     <input class="hidden" name="location_id" value="{{this.id}}"></input>
                     <button type="submit" class="btn btn-xs pull-right star">Favorite
                       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                     </button>
                   </form>
-                {{/if}}
+                {{/if}} -->
                 <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
                 <!-- <p>Days: {{happy_hour.day}}</p>
               <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
