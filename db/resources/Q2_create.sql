@@ -23,8 +23,8 @@ CREATE TABLE favorite (
 CREATE TABLE happy_hour (
     id serial  NOT NULL,
     day varchar(10)  NOT NULL,
-    start time  NOT NULL,
-    "end" time  NOT NULL,
+    start varchar(255),
+    "end" varchar(255),
     location_id int  NOT NULL,
     contributor_id int  NOT NULL,
     CONSTRAINT happy_hour_pk PRIMARY KEY (id)

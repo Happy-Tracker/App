@@ -54,72 +54,82 @@
               </div>
               <div class="form-group">
                 <label for="neighborhoods">Select Neighborhood:</label>
-                  <select name="neighborhood_name" class="form-control" id="neighborhoods">
-                    {{#each neighborhood}}
-                      {{#each this}}
+                <select name="neighborhood_name" class="form-control" id="neighborhoods">
+                  {{#each neighborhood}}
+                    {{#each this}}
                       <option value="{{this.name}}">{{this.name}}</option>
-                      {{/each}}
                     {{/each}}
-                  </select>
+                  {{/each}}
+                </select>
               </div>
               <div class="form-group">
                 <label for="address_input">Address</label>
                 <input name="address" size=60 id="address_input"></input>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" name="day" value="Sunday">Sun</label>
+                <label>
+                  <input type="checkbox" name="day" value="Sunday">Sun</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
-                <label><input type="checkbox" name="day" value="Monday">Mon</label>
+                <label>
+                  <input type="checkbox" name="day" value="Monday">Mon</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
-                <label><input type="checkbox" name="day" value="Tuesday">Tues</label>
+                <label>
+                  <input type="checkbox" name="day" value="Tuesday">Tues</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
-                <label><input type="checkbox" name="day" value="Wednesday">Wed</label>
+                <label>
+                  <input type="checkbox" name="day" value="Wednesday">Wed</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
-                <label><input type="checkbox" name="day" value="Thursday">Thurs</label>
+                <label>
+                  <input type="checkbox" name="day" value="Thursday">Thurs</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
-                <label><input type="checkbox" name="day" value="Friday">Fri</label>
+                <label>
+                  <input type="checkbox" name="day" value="Friday">Fri</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
-                <label><input type="checkbox" name="day" value="Sunday">Sat</label>
+                <label>
+                  <input type="checkbox" name="day" value="Sunday">Sat</label>
                 <label for="start_time">Start Time&colon; </label>
                 <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
                 <input type="time" name="end" value="17:00" class="form-control" id="end_time">
                 <br>
               </div>
-              </div>
-                  <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
-                  </div>
-            </form>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <!-- END CREATE HAPPY HOUR MODAL -->
     <!-- if the user is not logged in this should be their navbar, with login button -->
   {{else}}
@@ -158,9 +168,9 @@
         <h1>Welcome to Happy Tracker!</h1>
         <ul>
           <p>A collection of happy hours for Denver neighborhoods</li>
-          <li>Search by neighborhood and location for happy hour details at various venues</li>
-          <li>Filter by times, days, and neighborhood.</li>
-          <li>Log in to...</li>
+            <li>Search by neighborhood and location for happy hour details at various venues</li>
+            <li>Filter by times, days, and neighborhood.</li>
+            <li>Log in to...</li>
             <ul>
               <li>Make a collection of favorite Happy Hours</li>
               <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
@@ -231,7 +241,7 @@
                       <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
                     </div>
                   </form>
-                 </div>
+                </div>
               </div>
             </div>
           </div>
@@ -243,21 +253,21 @@
   <section class="container">
     <h2>Denver Neighborhoods</h2>
     {{#each neighborhood}}
-    <article class="row">
-      {{#each this}}
-      <div class="col-sm-3">
-        <div class="thumbnail">
-          <div class="carousel slide">
-            <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
-               <div class="carousel-caption">
-                 {{this.name}}
-               </div>
-            </a>
+      <article class="row">
+        {{#each this}}
+          <div class="col-sm-3">
+            <div class="thumbnail">
+              <div class="carousel slide">
+                <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
+                  <div class="carousel-caption">
+                    {{this.name}}
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      {{/each}}
-    </article>
+        {{/each}}
+      </article>
     {{/each}}
   </section>
 
