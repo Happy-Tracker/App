@@ -39,50 +39,89 @@
             <h4>Add a Happy Hour</h4>
           </div>
           <div class="modal-body">
-            <form action="#" method="post">
-              <div class="form-group">
-                <label for="venue_input">Venue Name</label>
-                <input type="text" name="name" id="venue_input" placeholder="Venue name">
-              </div>
-              <div class="form-group">
-                <label for="image_url_input">Image URL</label>
-                <input type="url" name="image_url" id="image_url_input" placeholder="Paste image URL here">
-              </div>
-              <div class="form-group">
-                <label for="neighborhoods">Select Neighborhood:</label>
-                  <select class="form-control" id="neighborhoods">
+            <form action="/home/addhh" method="post">
+                <div class="form-group">
+                  <label for="venue_input">Venue Name</label>
+                  <input type="text" name="name" id="venue_input" placeholder="Venue name">
+                </div>
+                <div class="form-group">
+                  <label for="url_input">Venue URL</label>
+                  <input type="url" name="url" id="url_input" placeholder="Venue URL here">
+                </div>
+                <div class="form-group">
+                  <label for="image_url_input">Image URL</label>
+                  <input type="url" name="image_url" id="image_url_input" placeholder="Paste image URL here">
+                </div>
+                <div class="form-group">
+                  <label for="neighborhoods">Select Neighborhood:</label>
+                  <select name="neighborhood_name" class="form-control" id="neighborhoods">
                     {{#each neighborhood}}
                       {{#each this}}
-                      <option value="{{this.name}}">{{this.name}}</option>
+                        <option value="{{this.name}}">{{this.name}}</option>
                       {{/each}}
                     {{/each}}
                   </select>
-              </div>
-              <div class="form-group">
-                <label for="address_input">Address</label>
-                <input name="address" size=60 id="address_input"></input>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" name="day" value="Sunday">Sunday</label>
-                <label><input type="checkbox" name="day" value="Monday">Monday</label>
-                <label><input type="checkbox" name="day" value="Tuesday">Tuesday</label>
-                <label><input type="checkbox" name="day" value="Wednesday">Wednesday</label>
-                <label><input type="checkbox" name="day" value="Thursday">Thursday</label>
-                <label><input type="checkbox" name="day" value="Friday">Friday</label>
-                <label><input type="checkbox" name="day" value="Sunday">Saturday</label>
-              </div>
-              <div class="form-group">
-                <label for="start_time">Start Time&colon; </label>
-                <input type="time" name="start" class="form-control" id="start_time">
-              </div>
-              <div class="form-group">
-                <label for="end_time">End Time&colon; </label>
-                <input type="time" name="end" class="form-control" id="end_time">
-              </div>
-                  <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add Happy Hour</button>
-                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="address_input">Address</label>
+                  <input name="address" size=60 id="address_input"></input>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="day" value="Sunday">Sun</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                  <label>
+                    <input type="checkbox" name="day" value="Monday">Mon</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                  <label>
+                    <input type="checkbox" name="day" value="Tuesday">Tues</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                  <label>
+                    <input type="checkbox" name="day" value="Wednesday">Wed</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                  <label>
+                    <input type="checkbox" name="day" value="Thursday">Thurs</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                  <label>
+                    <input type="checkbox" name="day" value="Friday">Fri</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                  <label>
+                    <input type="checkbox" name="day" value="Sunday">Sat</label>
+                  <label for="start_time">Start Time&colon; </label>
+                  <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                  <label for="end_time">End Time&colon; </label>
+                  <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                  <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
+            </div>
             </form>
           </div>
         </div><!-- /.modal-content -->
@@ -122,22 +161,20 @@
   <!-- if the user is not logged in -->
   <section class="container well well-lg public site-description">
     <div class="row">
-      <h1>Welcome to Happy Tracker!</h1>
       <ul>
-        <p>A collection of happy hours for Denver neighborhoods</li>
-        <li>Search by neighborhood and location for happy hour details at various venues</li>
-        <li>Filter by times, days, and neighborhood.</li>
+        <p>Happy Tracker is a collection of happy hours for Denver neighborhoods</li>
+        <li>Browse by neighborhood and location for happy hour details at various venues</li>
         <li>Log in to...</li>
           <ul>
-            <li>Make a collection of favorite Happy Hours</li>
             <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+            <li>Future Feature: Make a collection of favorite Happy Hours</li>
           </ul>
       </ul>
     </div>
     <article class="row">
       <!-- sign up modal -->
       <div class="col-sm-3 col-sm-offset-3 text-center">
-        <p id="button-label">Become a User!</p>
+        <p id="button-label">Become a user!</p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
           Sign Up Now
         </button>

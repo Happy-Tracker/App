@@ -16,8 +16,9 @@ a {
 }
 .site-description {
     width: 80%;
+    margin-top: 1rem;
     padding: {
-        left: 10%
+        left: 10%;
         right: 10%;
     }
     h1 {
@@ -28,6 +29,9 @@ a {
     }
     li {
         font-size: 1.8rem;
+    }
+    btn-col{
+        margin: 0 1rem;
     }
 }
 ul {
@@ -69,4 +73,8 @@ input[type=checkbox] {
 }
 a img {
   // background-color: rgba(0, 0, 0, 10%);
+}
+
+.add-form{
+  
 }

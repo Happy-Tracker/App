@@ -16,14 +16,17 @@ a {
 
 .site-description {
   width: 80%;
-  padding-left: 25%;
-  padding-right: 25%; }
+  margin-top: 1rem;
+  padding-left: 10%;
+  padding-right: 10%; }
   .site-description h1 {
     font-size: 5rem; }
   .site-description p {
     font-size: 3rem; }
   .site-description li {
     font-size: 1.8rem; }
+  .site-description btn-col {
+    margin: 0 1rem; }
 
 ul {
   list-style: none; }

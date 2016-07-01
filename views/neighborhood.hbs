@@ -44,7 +44,7 @@
             <h4>Add a Happy Hour</h4>
           </div>
           <div class="modal-body">
-            <form action="/home/addhh" method="post">
+            <form action="/home/addhh" method="post" class="add-form">
               <div class="form-group">
                 <label for="venue_input">Venue Name</label>
                 <input type="text" name="name" id="venue_input" placeholder="Venue name">
@@ -171,23 +171,23 @@
 <main>
   {{#unless sessionId}}
     <!-- if the user is not logged in -->
-    <section class="container well well-lg public site-description">
+    <section class="container well public site-description">
       <div class="row">
         <ul>
-          <p>Happy tracker is a collection of happy hours for Denver neighborhoods.</li>
+          <p>Happy Tracker is a collection of happy hours for Denver neighborhoods.</li>
             <li>Browse by neighborhood and location for happy hour details at various venues</li>
             <!-- <li>Filter by times, days, and neighborhood.</li> -->
             <li>Log in to...</li>
             <ul>
-              <li>Make a collection of favorite Happy Hours</li>
               <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+              <li>Future Feature: Make a collection of favorite Happy Hours</li>
             </ul>
         </ul>
       </div>
       <article class="row">
         <!-- sign up modal -->
-        <div class="col-sm-3 col-sm-offset-3 text-center">
-          <p id="button-label">Become a User!</p>
+        <div class="col-sm-3 col-sm-offset-3 text-center btn-col">
+          <p id="button-label">Become a user!</p>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
             Sign Up Now
           </button>
@@ -223,7 +223,7 @@
           </div>
         </div>
         <!-- Login modal -->
-        <div class="col-sm-3 text-center">
+        <div class="col-sm-3 text-center btn-col">
           <p id="button-label">Already a user?</p>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
           <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
