@@ -2,7 +2,10 @@
 </script>
 <script type="text/javascript" src="/javascripts/googlemap.js">
 </script>
-<script src=`https://maps.googleapis.com/maps/api/js?key={{api}}&callback=initMap` async defer></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{api}}callback=initMap"
+    async defer></script>
+
 <header>
   <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
   {{#if sessionId}}
@@ -263,18 +266,18 @@
     {{#each happyhours}}
       <div class="row">
         {{#each this}}
-        <h2>{{sessionId}}</h2>
+          <h2>{{sessionId}}</h2>
           <div class="col-sm-3">
             <div class="thumbnail">
               <img class="img-responsive venue-img" src="{{this.image_url}}">
               <div class="caption">
                 {{#if ../../sessionId}}
-                <form action="/favorite/{{this.name}}" method="post">
-                  <input class="hidden" name="location_id" value="{{this.id}}"></input>
-                  <button type="submit" class="btn btn-xs pull-right star">Favorite
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                  </button>
-                </form>
+                  <form action="/favorite/{{this.name}}" method="post">
+                    <input class="hidden" name="location_id" value="{{this.id}}"></input>
+                    <button type="submit" class="btn btn-xs pull-right star">Favorite
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </button>
+                  </form>
                 {{/if}}
                 <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
                 <!-- <p>Days: {{happy_hour.day}}</p>
