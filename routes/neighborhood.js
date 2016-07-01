@@ -15,7 +15,7 @@ router.get('/:name', function(req, res, next) {
             }, [])
             res.render('neighborhood', {
                 api: process.env.GOOGLE_API_KEY,
-                id: req.session.userID,
+                sessionId: req.session.userID,
                 happyhours: splitList,
                 neighborhood: req.params.name
             });

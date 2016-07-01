@@ -24,14 +24,16 @@ module.exports = {
     },
     Location: {
         getLocations: () => knex('location'),
-        addLocation: (body, id) => knex('location').insert({
-            name: body.name,
-            url: body.url,
-            image_url: body.image_url,
-            address: body.address,
-            contributor_id: id,
-            neighborhood_name: body.neighborhood_name
-        }, 'id').first(),
+        addLocation: (body, id) => {
+            return knex('location').insert({
+                name: body.name,
+                address: body.address,
+                url: body.url,
+                image_url: body.image_url,
+                contributor_id: id,
+                neighborhood_name: body.neighborhood_name
+            }, '*')
+        },
         getLocationsByNeighborhood: name => knex('location').where('neighborhood_name', name)
     },
 
@@ -42,11 +44,14 @@ module.exports = {
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
             .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName)),
-        addHappyHour: (body, id) => knex('happy_hour').insert({
-            day: body.day,
-            start_time: body.start,
-            end_time: body.end,
-            location_id: id
-        })
+        addHappyHour: (body, id, contributor) => {
+            return knex('happy_hour').insert({
+                day: body.day[0] || "none",
+                start: body.start[0] || "0600",
+                end: body.end[0] || "0600",
+                location_id: id,
+                contributor_id: contributor
+            })
+        }
     }
 };

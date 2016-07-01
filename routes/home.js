@@ -6,7 +6,7 @@ var localAuth = require('../auth/localAuth');
 router.get('/', localAuth.isLoggedIn, function(req, res) {
     db.Neighborhood.getNeighborhoods()
         .then(neighborhoods => {
-            splitHoods = neighborhoods.reduce((result, item, i) => {
+            var splitHoods = neighborhoods.reduce((result, item, i) => {
                 var index = Math.floor(i / 4)
                 result[index] = result[index] || []
                 result[index].push(item)
@@ -56,10 +56,10 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
 
 
 router.post('/addhh', function(req, res, next) {
-    db.Location.addLocation(req.body, req.session.userID).then(function(id) {
-        console.log(id[0], req.body);
-        db.HappyHour.addHappyHour(req.body, id).then(function() {
-            res.render('/home')
+    db.Location.addLocation(req.body, req.session.userID).then(function(datas) {
+        console.log(datas[0]);
+        db.HappyHour.addHappyHour(req.body, datas[0].id, datas[0].contributor_id).then(function() {
+            res.redirect('/home')
         })
     })
 });

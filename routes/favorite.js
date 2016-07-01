@@ -15,12 +15,12 @@ router.get('/getUserId', function(req, res) {
 });
 
 
-router.post('/:name', function(req, res, next){
+router.post('/:name', function(req, res, next) {
     db.Favorite.addUserFavorite(req.body.location_id, req.session.userID).then(() => {
-      return db.Favorite.getNeighborhoodByLocation(req.params.name)
-      .then(currentHood => {
-          res.redirect('/neighborhood/' + currentHood.neighborhood_name)
-      })
+        return db.Favorite.getNeighborhoodByLocation(req.params.name)
+            .then(currentHood => {
+                res.redirect('/neighborhood/' + currentHood.neighborhood_name)
+            })
     });
 })
 

@@ -5,7 +5,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{api}}callback=initMap" async defer></script>
 <header>
   <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
-  {{#if id}}
+  {{#if sessionId}}
     <nav class="navbar navbar-default logged-in">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -166,11 +166,10 @@
 </header>
 
 <div id="map">
-
 </div>
 
 <main>
-  {{#unless id}}
+  {{#unless sessionId}}
     <!-- if the user is not logged in -->
     <section class="container well well-lg public site-description">
       <div class="row">
@@ -264,18 +263,19 @@
     {{#each happyhours}}
       <div class="row">
         {{#each this}}
+        <h2>{{sessionId}}</h2>
           <div class="col-sm-3">
             <div class="thumbnail">
               <img class="img-responsive venue-img" src="{{this.image_url}}">
               <div class="caption">
-
+                {{#if ../../sessionId}}
                 <form action="/favorite/{{this.name}}" method="post">
                   <input class="hidden" name="location_id" value="{{this.id}}"></input>
                   <button type="submit" class="btn btn-xs pull-right star">Favorite
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
                 </form>
-
+                {{/if}}
                 <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
                 <!-- <p>Days: {{happy_hour.day}}</p>
               <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
