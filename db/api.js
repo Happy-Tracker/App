@@ -55,21 +55,6 @@ module.exports = {
         },
         getHappyHourInfo: id =>
             knex('location').join('happy_hour', 'location_id', 'location.id')
-            .select(
-                'location.id',
-                'location.name',
-                'happy_hour.id',
-                'location.address',
-                'location.url',
-                'location.image_url',
-                'happy_hour.contributor_id',
-                'neighborhood_name',
-                'happy_hour.day',
-                'happy_hour.start',
-                'happy_hour.end'
-            )
-            .where({
-                'location.id': id
-            })
+            .select().where({'location.id': id})
     }
 };

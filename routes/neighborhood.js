@@ -31,5 +31,4 @@ router.get('/get/locations', function(req, res) {
 });
 
 
-
 module.exports = router;

@@ -81,44 +81,44 @@
     </article>
   </section>
 {{/unless}}
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
-      <h1>{{info.name}}</h1>
-      <p>{{info.neighborhood_name}}</p>
-      <img class="img-responsive" src="{{info.image_url}}" alt="" />
-    </div>
-    <div class="row col-sm-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4>Details</h4>
-        </div>
-        <div class="panel-body">
-          <p>Web site: <a href='{{info.address}}'>{{info.url}}</a></p>
-          <p>Address: {{info.address}}</p>
-          <div class="row">
-            <div class="col-sm-4">
-              <h5>Days:</h5>
+  <section class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>{{info.name}}</h1>
+        <p>{{info.neighborhood_name}}</p>
+        <img class="img-responsive" src="{{info.image_url}}" alt="" />
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4>Details</h4>
+          </div>
+          <div class="panel-body">
+            <p>Web site: <a href='{{info.address}}'>{{info.url}}</a></p>
+            <p>Address: {{info.address}}</p>
+            <div class="row">
+              <div class="col-sm-4">
+                <h5>Days:</h5>
+              </div>
+              <div class="col-sm-8">
+                <h5>Hours:</h5>
+              </div>
             </div>
-            <div class="col-sm-8">
-              <h5>Hours:</h5>
+
+            {{#each days}}
+            <div class="row">
+              <div class="col-sm-4">
+                <p>{{day}}</p>
+              </div>
+              <div class="col-sm-8">
+                <p>{{start}} to {{end}}</p>
+              </div>
+            {{/each}}
             </div>
           </div>
-
-          {{#each days}}
-          <div class="row">
-            <div class="col-sm-4">
-              <p>{{day}}</p>
-            </div>
-            <divclass="col-sm-8">
-              <p>{{start}} to {{end}}</p>
-            </div>
-          {{/each}}
+        <a href="/happyhour/{{loc_id}}/delete"><button class="btn btn-danger">Remove</button></a>
         </div>
       </div>
-      <a href="/happyhour/{{info.location.id}}/delete"><button class="btn btn-danger">Remove</button></a>
     </div>
-  </div>
-  <!-- <div class='col-sm' -->
-</div>
+  </section>
 </main>

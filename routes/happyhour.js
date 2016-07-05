@@ -8,8 +8,8 @@ require('dotenv').config();
 router.get('/:id', localAuth.isLoggedIn, function(req, res) {
     db.HappyHour.getHappyHourInfo(req.params.id)
     .then(function(data) {
-        // console.log(data, 'the joined data!');
         res.render('happyhour', {
+            loc_id:req.params.id,
             email:req.session.email,
             sessionId: req.session.userID,
             info: data[0],

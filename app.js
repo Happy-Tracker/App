@@ -15,7 +15,6 @@ var favorite = require('./routes/favorite');
 var happyhour = require('./routes/happyhour');
 var home = require('./routes/home');
 var neighborhood = require('./routes/neighborhood');
-var location = require('./routes/location');
 
 var app = express();
 
@@ -41,7 +40,6 @@ app.use('/neighborhood', neighborhood);
 app.use('/contributor', contributor);
 app.use('/favorite', favorite);
 app.use('/happyhour', happyhour);
-app.use('/location', location);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
