@@ -1,8 +1,7 @@
 #map {
   height: 33vh;
   width: 50vw;
-  margin: auto;
-}
+  margin: auto; }
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -25,7 +24,7 @@ a {
   .site-description h1 {
     font-size: 5rem; }
   .site-description p {
-    font-size: 3rem; }
+    font-size: 2.5rem; }
   .site-description li {
     font-size: 1.8rem; }
   .site-description btn-col {
@@ -33,9 +32,6 @@ a {
 
 ul {
   list-style: none; }
-
-#button-label {
-  font-size: 2rem; }
 
 .star {
   border-color: #e65c00;
@@ -57,5 +53,8 @@ ul {
   font-size: 2.5rem;
   text-shadow: 2px 2px black; }
 
-input[type=checkbox] {
-  display: inline; }
+.add-modal {
+  width: 40%; }
+
+.add-input {
+  width: 100%; }

@@ -1,6 +1,5 @@
 <main>
   {{#unless sessionId}}
-    <!-- if the user is not logged in -->
     <section class="container well well-lg public site-description">
       <div class="row">
         <h1>Welcome to Happy Tracker!</h1>
@@ -10,76 +9,72 @@
             <li>Filter by times, days, and neighborhood.</li>
             <li>Log in to...</li>
             <ul>
-              <!-- <li>Make a collection of favorite Happy Hours</li> -->
               <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+              <li>Future Feature: Make a collection of favorite Happy Hours</li>
             </ul>
         </ul>
       </div>
       <article class="row">
         <!-- sign up modal -->
         <div class="col-sm-3 col-sm-offset-3 text-center">
-          <p id="button-label">Become a User!</p>
+          <p class="button-label">Become a User!</p>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
             Sign Up Now
           </button>
           <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel">
-            <div class="modal-dialog" role="document">
+            <section class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
+                <header class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title" id="signUpModalLabel">Sign Up Today</h4>
-                </div>
-                <div class="modal-body text-left">
+                </header>
+                <article class="modal-body text-left">
                   <form action="/home/signup" method="post">
-                    <div class="form-group">
+                    <fieldset class="form-group">
                       <label for="email">Email address</label>
                       <input type="email" class="form-control" autofocus id="email" name="email">
-                    </div>
-                    <div class="form-group">
+                    </fieldset>
+                    <fieldset class="form-group">
                       <label for="password">Password</label>
                       <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="form-group">
-                      <label for="password2">Confirm Password</label>
-                      <input type="password" class="form-control" id="password2" value="">
-                    </div>
-                    <div class="modal-footer">
+                    </fieldset>
+                    <footer class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" id="sign-up" class="btn btn-primary">Sign Up</button>
-                    </div>
+                    </footer>
                   </form>
-                </div>
+                </article>
               </div>
-            </div>
+            </section>
           </div>
         </div>
         <!-- Login modal -->
         <div class="col-sm-3 text-center">
-          <p id="button-label">Already a user?</p>
+          <p class="button-label">Already a user?</p>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
           <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header">
+                <header class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title" id="loginModalLabel">Log In to your account</h4>
-                </div>
-                <div class="modal-body text-left">
+                </header>
+                <article class="modal-body text-left">
                   <form action="/home/login" method="post">
-                    <div class="form-group">
+                    <fieldset class="form-group">
                       <label for="email">Email address</label>
                       <input type="email" class="form-control" id="email" name="email">
-                    </div>
-                    <div class="form-group">
+                    </fieldset>
+                    <fieldset class="form-group">
                       <label for="password">Password</label>
                       <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="modal-footer">
+                    </fieldset>
+                    <footer class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
-                    </div>
+                    </footer>
                   </form>
-                </div>
+                </article>
               </div>
             </div>
           </div>
