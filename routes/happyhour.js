@@ -8,6 +8,7 @@ require('dotenv').config();
 router.get('/:id', localAuth.isLoggedIn, function(req, res) {
     db.HappyHour.getHappyHourInfo(req.params.id)
     .then(function(data) {
+      // console.log(data);
         res.render('happyhour', {
             loc_id:req.params.id,
             email:req.session.email,
@@ -19,14 +20,12 @@ router.get('/:id', localAuth.isLoggedIn, function(req, res) {
 });
 
 router.get('/:id/delete', function(req, res) {
-    knex('location')
-        .where({
-            id: req.params.id
-        })
-        .del()
-        .then(function() {
-            res.redirect('/');
-        });
+    knex('happy_hour').where({location_id: req.params.id}).del()
+    .then(function(){
+        return knex('location').where({id: req.params.id}).del();
+    }).then(function() {
+        res.redirect('/');
+    });
 });
 
 module.exports = router;

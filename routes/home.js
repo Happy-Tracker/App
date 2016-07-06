@@ -57,7 +57,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res) {
 
 router.post('/addhh', function(req, res) {
     db.Location.addLocation(req.body, req.session.userID).then(function(datas) {
-        // console.log(datas[0]);
+        console.log(datas[0]);
         db.HappyHour.addHappyHour(req.body, datas[0].id, datas[0].contributor_id).then(function() {
             res.redirect('/home');
         });
