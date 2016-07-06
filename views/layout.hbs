@@ -12,6 +12,168 @@
     <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
   <body>
+    <header>
+      {{#if sessionId}}
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/home">
+                <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default" id="search-btn">Search</button>
+              </form>
+              <div class="collapse navbar-collapse user-buttons">
+                <a type="button" class="btn btn-primary navbar-left" id="add-btn" data-toggle="modal" data-target="#create-hh">Add a Happy Hour</a>
+                <a href='/home/logout' type="button" class="btn btn-default navbar-right">Log Out</a>
+                <!-- <a type="button" class="btn btn-info navbar-right" id="fav-btn">Your Favorites</a> -->
+                <p class="navbar-text navbar-right">Logged in as {{email}}</p>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- BEGIN CREATE HAPPY HOUR MODAL -->
+        <section class="modal fade" tabindex="-1" role="dialog" id="create-hh">
+          <div class="modal-dialog add-modal">
+            <div class="modal-content">
+              <header class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>Add a Happy Hour</h4>
+              </header>
+              <section class="modal-body">
+                <form action="/home/addhh" method="post" class="add-form">
+                  <fieldset class="form-group">
+                    <label for="venue_input">Venue&colon;</label>
+                    <input type="text" name="name" id="venue_input" class="add-input" placeholder="Venue Name">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <label for="url_input">Venue URL&colon;</label>
+                    <input type="url" name="url" id="url_input" placeholder="Paste Venue URL Here" class="add-input">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <label for="image_url_input">Image URL&colon;</label>
+                    <input type="url" name="image_url" id="image_url_input" placeholder="Paste Image URL Here" class="add-input">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <label for="neighborhoods">Select Neighborhood&colon;</label>
+                    <select name="neighborhood_name" class="form-control" id="neighborhoods">
+                      {{#each neighborhood}}
+                        {{#each this}}
+                          <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                      {{/each}}
+                    </select>
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <label for="address_input">Address&colon;</label>
+                    <input name="address" id="address_input" placeholder="Venue Address" class="add-input"></input>
+                  </fieldset>
+                  <div class="table-responsive">
+                    <table>
+                      <tr>
+                        <th>Day&colon;</th>
+                        <th>Start Time&colon;</th>
+                        <th>End Time&colon;</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label><input type="checkbox" name="day" value="Sunday"> Sun</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                      <tr>
+                        <td><label>
+                          <input type="checkbox" name="day" value="Monday"> Mon</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label><input type="checkbox" name="day" value="Tuesday"> Tues</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label><input type="checkbox" name="day" value="Wednesday"> Wed</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label><input type="checkbox" name="day" value="Thursday"> Thurs</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label><input type="checkbox" name="day" value="Friday"> Fri</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label><input type="checkbox" name="day" value="Sunday"> Sat</label>
+                        </td>
+                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
+                      </tr>
+                    </table>
+                  </div>
+              </section>
+              <footer class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
+              </footer>
+              </form>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </section><!-- /.modal -->
+        <!-- END CREATE HAPPY HOUR MODAL -->
+      {{else}}
+        <nav class="navbar navbar-default public">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/home">
+                <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-2">
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control input-sm" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+              </form>
+              <button type="button" class="btn btn-default navbar-right" data-toggle="modal" data-target="#loginModal">Log In</button>
+            </div>
+          </div>
+        </nav>
+      {{/if}}
+    </header>
     {{{body}}}
     <footer class="navbar">
       <div class="container">

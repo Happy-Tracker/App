@@ -24,8 +24,8 @@ a {
     h1 {
         font-size: 5rem;
     }
-    p {
-        font-size: 3rem;
+    p{
+        font-size: 2.5rem;
     }
     li {
         font-size: 1.8rem;
@@ -34,11 +34,9 @@ a {
         margin: 0 1rem;
     }
 }
+
 ul {
     list-style: none;
-}
-#button-label {
-    font-size: 2rem;
 }
 
 .star{
@@ -64,17 +62,11 @@ ul {
   font-size: 2.5rem;
   text-shadow: 2px 2px black;
 }
-#start_time, #end_time {
-  width: 26.5%;
-  display: inline;
-}
-input[type=checkbox] {
-  display: inline;
-}
-a img {
-  // background-color: rgba(0, 0, 0, 10%);
+
+.add-modal{
+  width:40%;
 }
 
-.add-form{
-  
+.add-input{
+  width: 100%;
 }
