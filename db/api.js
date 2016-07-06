@@ -8,7 +8,7 @@ module.exports = {
             knex('contributor').insert({
                 email: body.email,
                 password: body.password,
-                isadmin: "false"
+                isadmin: 'false'
             }).returning('id').then(id => {
                 return knex('contributor').where('id', id[0]).first();
             })
@@ -24,7 +24,7 @@ module.exports = {
     },
     Location: {
         getLocations: () => knex('location'),
-        addLocation: function(body, id) {
+        addLocation: (body, id) => {
             return knex('location').insert({
                 name: body.name,
                 address: body.address,
@@ -32,11 +32,10 @@ module.exports = {
                 image_url: body.image_url,
                 contributor_id: id,
                 neighborhood_name: body.neighborhood_name
-            }, '*')
+            }, '*');
         },
         getLocationsByNeighborhood: name => knex('location').where('neighborhood_name', name)
     },
-
     Neighborhood: {
         getNeighborhoods: () => knex('neighborhood'),
         findNeighborhoodsByName: name => knex('neighborhood').where('name', name)

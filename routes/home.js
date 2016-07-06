@@ -21,7 +21,7 @@ router.get('/', localAuth.isLoggedIn, function(req, res) {
 });
 
 // login
-router.post('/login', function(req, res, next) {
+router.post('/login', function(req, res) {
     localAuth.passport.authenticate('local', (err, user) => {
         if (err) {
             res.render('home', {
@@ -32,7 +32,7 @@ router.post('/login', function(req, res, next) {
             req.session.email = user.email;
             res.redirect('/home');
         }
-    })(req, res, next);
+    })(req, res);
 });
 
 router.get('/logout', (req, res) => {
@@ -54,10 +54,10 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res) {
     });
 });
 
-
 router.post('/addhh', function(req, res) {
-    db.Location.addLocation(req.body, req.session.userID).then(function(datas) {
-        console.log(datas[0]);
+    db.Location.addLocation(req.body, req.session.userID)
+    .then(function(datas) {
+        // console.log(datas[0]);
         db.HappyHour.addHappyHour(req.body, datas[0].id, datas[0].contributor_id).then(function() {
             res.redirect('/home');
         });

@@ -10,13 +10,13 @@ function initMap() {
     });
 
     $.get('/neighborhood/get/locations').done(locations => {
-            
+
             var geocoder = new google.maps.Geocoder();
 
             for (let location of locations) {
                 let contentString = `
                     <div class="container infoWindow">
-                        <h5 class="miniTitle">${location.name}</h5>
+                        <a href="/happyhour/${location.id}"><h5 class="miniTitle">${location.name}</h5></a>
                         <p>${location.address}</p>
                         <p><a href="${location.url}">Website</a></p>
                         <img src="${location.image_url}" class="mapImage">

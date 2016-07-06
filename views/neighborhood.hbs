@@ -89,11 +89,10 @@
   {{/unless}}
   <!-- This is what everyone sees whether logged in or not -->
   <section class="container">
-    <h2>{{neighborhood}}</h2>
+    <h2>{{thisNeighborhood}}</h2>
     {{#each happyhours}}
       <div class="row">
         {{#each this}}
-          <h2>{{sessionId}}</h2>
           <div class="col-sm-3">
             <div class="thumbnail">
               <img class="img-responsive venue-img" src="{{this.image_url}}">
