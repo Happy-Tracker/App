@@ -37,7 +37,7 @@ module.exports = {
         getLocationsByNeighborhood: name => knex('location').where('neighborhood_name', name)
     },
     Neighborhood: {
-        getNeighborhoods: () => knex('neighborhood'),
+        getNeighborhoods: () => knex('neighborhood').orderBy('name', 'asc'),
         findNeighborhoodsByName: name => knex('neighborhood').where('name', name)
     },
     HappyHour: {
