@@ -50,8 +50,13 @@ ul {
     color: white; }
 
 .carousel-caption {
-  font-size: 2.5rem;
-  text-shadow: 2px 2px black; }
+  left: auto;
+  right: auto;
+  font-size: 2rem;
+  text-shadow: 2px 2px black;
+  padding: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.6); }
 
 .add-modal {
   width: 40%; }

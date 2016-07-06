@@ -6,11 +6,11 @@ var localAuth = require('../auth/localAuth');
 router.get('/:name', localAuth.isLoggedIn, function(req, res){
     db.HappyHour.getInfoByHoodName(req.params.name)
         .then(list => {
-            splitList = list.reduce((result, item, i) => {
-                var index = Math.floor(i / 4);
-                result[index] = result[index] || [];
-                result[index].push(item);
-                return result;
+          splitList = list.reduce((result, item, i) => {
+              var index = Math.floor(i / 4);
+              result[index] = result[index] || [];
+              result[index].push(item);
+              return result;
             }, []);
             res.render('neighborhood', {
                 email: req.session.email,
@@ -20,18 +20,17 @@ router.get('/:name', localAuth.isLoggedIn, function(req, res){
                 thisNeighborhood: req.params.name
             });
         });
-
 });
 
-// router.get('/:name', function(req, res) {
-//     db.Neighborhood.getNeighborhoods()
-//         .then(neighborhoods => {
-//           console.log(neighborhoods);
-//             res.render('neighborhood', {
-//                 neighborhood: neighborhoods
-//             });
-//         });
-// });
+router.get('/:name', function(req, res) {
+    db.Neighborhood.getNeighborhoods()
+        .then(neighborhoods => {
+          console.log(neighborhoods);
+            res.render('neighborhood', {
+                neighborhood: neighborhoods
+            });
+        });
+});
 
 router.get('/get/locations', function(req, res) {
     db.Location.getLocations().then(allLocations => {

@@ -90,13 +90,12 @@
         {{#each this}}
           <div class="col-sm-3">
             <div class="thumbnail">
-              <div class="carousel slide">
-                <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
-                  <div class="carousel-caption">
+                <a href="/neighborhood/{{this.name}}">
+                  <img src="{{this.image_url}}" class="img-responsive">
+                  <div class="carousel-caption text-center"><span>
                     {{this.name}}
-                  </div>
+                  </span></div>
                 </a>
-              </div>
             </div>
           </div>
         {{/each}}
