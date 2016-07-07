@@ -43,11 +43,11 @@ module.exports = {
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
             .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName)),
-        addHappyHour: (body, id, contributor) => {
-            return knex('happy_hour').insert({
-                day: body.day[0] || 'none',
-                start: body.start[0] || '0600',
-                end: body.end[0] || '0600',
+        addHappyHour: (body, id, contributor, day) => {
+            knex('happy_hour').insert({
+                start: body.start || '0600',
+                end: body.end || '0600',
+                day: day || 'none',
                 location_id: id,
                 contributor_id: contributor
             });
