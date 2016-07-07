@@ -7,8 +7,6 @@
     <title>Happy Tracker</title>
     <!-- Bootswatch -->
     <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
   <body>
@@ -58,6 +56,10 @@
                     <input type="text" name="name" id="venue_input" class="add-input" placeholder="Venue Name">
                   </fieldset>
                   <fieldset class="form-group">
+                    <label for="address_input">Address&colon;</label>
+                    <input name="address" id="address_input" placeholder="Venue Address" class="add-input"></input>
+                  </fieldset>
+                  <fieldset class="form-group">
                     <label for="url_input">Venue URL&colon;</label>
                     <input type="url" name="url" id="url_input" placeholder="Paste Venue URL Here" class="add-input">
                   </fieldset>
@@ -70,73 +72,35 @@
                     <select name="neighborhood_name" class="form-control" id="neighborhoods">
                       {{#each neighborhood}}
                         {{#each this}}
-                          <option value="{{this.name}}">{{this.name}}</option>
+                          <option value="{{neighborhood.name}}">{{this.name}}</option>
                         {{/each}}
                       {{/each}}
                     </select>
                   </fieldset>
-                  <fieldset class="form-group">
-                    <label for="address_input">Address&colon;</label>
-                    <input name="address" id="address_input" placeholder="Venue Address" class="add-input"></input>
+                  <fieldset>
+                    <div class="row">
+                      <h4 class="col-sm-4">Day&colon;</h4>
+                      <h4 class="col-sm-4">Start Time&colon;</h4>
+                      <h4 class="col-sm-4">End Time&colon;</h4>
+                    </div>
+                    <div class="row">
+                      <ul class="col-sm-4">
+                        <li><label><input type="checkbox" name="day" value="Sunday"> Sunday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Monday"> Monday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Tuesday"> Tuesday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Wednesday"> Wednesday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Thursday"> Thursday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Friday"> Friday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Saturday"> Satday</label></li>
+                      </ul>
+                      <div class="col-sm-4">
+                        <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                      </div>
+                    </div>
                   </fieldset>
-                  <div class="table-responsive">
-                    <table>
-                      <tr>
-                        <th>Day&colon;</th>
-                        <th>Start Time&colon;</th>
-                        <th>End Time&colon;</th>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Sunday"> Sun</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td><label>
-                          <input type="checkbox" name="day" value="Monday"> Mon</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Tuesday"> Tues</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Wednesday"> Wed</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Thursday"> Thurs</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Friday"> Fri</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Sunday"> Sat</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time">
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                    </table>
-                  </div>
               </section>
               <footer class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 app.use(session({
     keys: [process.env.SESSION_KEY1, process.env.SESSION_KEY1]
-}))
+}));
 app.use(localAuth.passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', home);

@@ -1,73 +1,71 @@
+<!-- this is the modal and form for the add-form. Is also stored in another page-->
 
-<!--this is a form but will need to go into a different page  -->
-
-<div class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
+<section class="modal fade" tabindex="-1" role="dialog" id="create-hh">
+  <div class="modal-dialog add-modal">
     <div class="modal-content">
-      <div class="modal-header">
+      <header class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4>Add a Happy Hour</h4>
-      </div>
-      <form action="#" method="post">
-        <div class="form-group">
-          <label for="venue_input">Venue name</label>
-          <input type="text" name="venue" id="venue_input" placeholder="Venue name">
-        </div>
-        <div class="form-group">
-          <label for="image_url_input">Image</label>
-          <input type="url" name="image_url" id="image_url_input" placeholder="Image url">
-        </div>
-        <!-- <div class="form-group">
-          <label for="neighborhood_input">Neighborhood</label>
-          <input type="text" name="neighborhood" id="neighborhood_input" placeholder="neighborhood">
-        </div> -->
-
-        <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Neighborhood
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li><a href="#">Highland</a></li>
-          <li><a href="#">Cap Hill</a></li>
-          <li><a href="#">Lo-Hi</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </div>
-
-        <div class="form-group">
-          <label for="address_input">Address</label>
-          <textarea name="address" rows="4" cols="40" id="address_input"></textarea>
-        </div>
-        <div class="checkbox">
-          <label><input type="checkbox" name="dayofweek" value="S">S</label>
-          <label><input type="checkbox" name="dayofweek" value="M">M</label>
-          <label><input type="checkbox" name="dayofweek" value="T">T</label>
-          <label><input type="checkbox" name="dayofweek" value="W">W</label>
-          <label><input type="checkbox" name="dayofweek" value="Th">Th</label>
-          <label><input type="checkbox" name="dayofweek" value="F">F</label>
-          <label><input type="checkbox" name="dayofweek" value="S">S</label>
-        </div>
-        <div class="form-group">
-          <label for="start_time">Start Time&colon; </label>
-          <input type="time" class="form-control" id="start_time">
-        </div>
-        <div class="form-group">
-          <label for="end_time">End Time&colon; </label>
-          <input type="time" class="form-control" id="end_time">
-        </div>
-        <div class="form-group">
-          <label for="description_input">Description</label>
-          <textarea class="form-control" rows="3" id="description_input"></textarea>
-        </div>
-
-            <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+      </header>
+      <section class="modal-body">
+        <form action="/home/addhh" method="post" class="add-form">
+          <fieldset class="form-group">
+            <label for="venue_input">Venue&colon;</label>
+            <input type="text" name="name" id="venue_input" class="add-input" placeholder="Venue Name">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="address_input">Address&colon;</label>
+            <input name="address" id="address_input" placeholder="Venue Address" class="add-input"></input>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="url_input">Venue URL&colon;</label>
+            <input type="url" name="url" id="url_input" placeholder="Paste Venue URL Here" class="add-input">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="image_url_input">Image URL&colon;</label>
+            <input type="url" name="image_url" id="image_url_input" placeholder="Paste Image URL Here" class="add-input">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="neighborhoods">Select Neighborhood&colon;</label>
+            <select name="neighborhood_name" class="form-control" id="neighborhoods">
+              {{#each neighborhood}}
+                {{#each this}}
+                  <option value="{{neighborhood.name}}">{{this.name}}</option>
+                {{/each}}
+              {{/each}}
+            </select>
+          </fieldset>
+          <fieldset>
+            <div class="row">
+              <h4 class="col-sm-4">Day&colon;</h4>
+              <h4 class="col-sm-4">Start Time&colon;</h4>
+              <h4 class="col-sm-4">End Time&colon;</h4>
             </div>
+            <div class="row">
+              <ul class="col-sm-4">
+                <li><label><input type="checkbox" name="day" value="Sunday"> Sunday</label></li>
+                <li><label><input type="checkbox" name="day" value="Monday"> Monday</label></li>
+                <li><label><input type="checkbox" name="day" value="Tuesday"> Tuesday</label></li>
+                <li><label><input type="checkbox" name="day" value="Wednesday"> Wednesday</label></li>
+                <li><label><input type="checkbox" name="day" value="Thursday"> Thursday</label></li>
+                <li><label><input type="checkbox" name="day" value="Friday"> Friday</label></li>
+                <li><label><input type="checkbox" name="day" value="Saturday"> Satday</label></li>
+              </ul>
+              <div class="col-sm-4">
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+              </div>
+              <div class="col-sm-4">
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+              </div>
+            </div>
+          </fieldset>
+      </section>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
+      </footer>
       </form>
-
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</section><!-- /.modal -->
+<!-- END CREATE HAPPY HOUR MODAL -->
