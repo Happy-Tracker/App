@@ -72,7 +72,7 @@
                     <select name="neighborhood_name" class="form-control" id="neighborhoods">
                       {{#each neighborhood}}
                         {{#each this}}
-                          <option value="{{this.name}}">{{this.name}}</option>
+                          <option value="{{neighborhood.name}}">{{this.name}}</option>
                         {{/each}}
                       {{/each}}
                     </select>
@@ -88,7 +88,7 @@
                         <li><label><input type="checkbox" name="day" value="Sunday"> Sunday</label></li>
                         <li><label><input type="checkbox" name="day" value="Monday"> Monday</label></li>
                         <li><label><input type="checkbox" name="day" value="Tuesday"> Tuesday</label></li>
-                        <li><label><input type="checkbox" name="day" value="Wednesday"> Wedday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Wednesday"> Wednesday</label></li>
                         <li><label><input type="checkbox" name="day" value="Thursday"> Thursday</label></li>
                         <li><label><input type="checkbox" name="day" value="Friday"> Friday</label></li>
                         <li><label><input type="checkbox" name="day" value="Saturday"> Satday</label></li>
