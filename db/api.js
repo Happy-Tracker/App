@@ -8,9 +8,9 @@ module.exports = {
             knex('contributor').insert({
                 email: body.email,
                 password: body.password,
-                isadmin: "false"
+                isadmin: 'false'
             }).returning('id').then(id => {
-                return knex('contributor').where('id', id[0]).first()
+                return knex('contributor').where('id', id[0]).first();
             })
     },
     Favorite: {
@@ -32,40 +32,28 @@ module.exports = {
                 image_url: body.image_url,
                 contributor_id: id,
                 neighborhood_name: body.neighborhood_name
-            }, '*')
+            }, '*');
         },
         getLocationsByNeighborhood: name => knex('location').where('neighborhood_name', name)
     },
-
     Neighborhood: {
-        getNeighborhoods: () => knex('neighborhood'),
-        findNeighborhoodsByName: name => knex('neighborhood').where('name', name),
-        deleteLocation: (id) => {
-            router.get('/:id/delete', function(req, res) {
-                knex('location')
-                    .where({
-                        location_id: req.params.id
-                    })
-                    .andWhere({
-                        contributor_id: req.session.userID
-                    }).del()
-                    .then(function() {
-                        res.redirect('/');
-                    });
-            });
-        }
+        getNeighborhoods: () => knex('neighborhood').orderBy('name', 'asc'),
+        findNeighborhoodsByName: name => knex('neighborhood').where('name', name)
     },
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
             .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName)),
-        addHappyHour: (body, id, contributor) => {
-            return knex('happy_hour').insert({
-                day: body.day[0] || "none",
-                start: body.start[0] || "0600",
-                end: body.end[0] || "0600",
+        addHappyHour: (body, id, contributor, day) => {
+            knex('happy_hour').insert({
+                start: body.start || '0600',
+                end: body.end || '0600',
+                day: day || 'none',
                 location_id: id,
                 contributor_id: contributor
-            })
-        }
+            });
+        },
+        getHappyHourInfo: id =>
+            knex('location').join('happy_hour', 'location_id', 'location.id')
+            .select().where({'location.id': id})
     }
 };

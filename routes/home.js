@@ -7,22 +7,22 @@ router.get('/', localAuth.isLoggedIn, function(req, res) {
     db.Neighborhood.getNeighborhoods()
         .then(neighborhoods => {
             var splitHoods = neighborhoods.reduce((result, item, i) => {
-                var index = Math.floor(i / 4)
-                result[index] = result[index] || []
-                result[index].push(item)
-                return result
-            }, [])
+                var index = Math.floor(i / 4);
+                result[index] = result[index] || [];
+                result[index].push(item);
+                return result;
+            }, []);
             res.render('home', {
                 email: req.session.email,
-                id: req.session.userID,
+                sessionId: req.session.userID,
                 neighborhood: splitHoods
             });
         });
 });
 
 // login
-router.post('/login', function(req, res, next) {
-    localAuth.passport.authenticate('local', (err, user, info) => {
+router.post('/login', function(req, res) {
+    localAuth.passport.authenticate('local', (err, user) => {
         if (err) {
             res.render('home', {
                 error: err
@@ -32,14 +32,14 @@ router.post('/login', function(req, res, next) {
             req.session.email = user.email;
             res.redirect('/home');
         }
-    })(req, res, next);
-})
+    })(req, res);
+});
 
-router.get('/logout', (req, res, next) => {
+router.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/home');
-})
-router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
+});
+router.post('/signup', localAuth.isLoggedIn, function(req, res) {
     db.Contributor.findContributorByEmail(req.body.email).then(user => {
         if (user) {
             res.render('home', {
@@ -52,16 +52,20 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
             });
         }
     });
-})
-
-
-router.post('/addhh', function(req, res, next) {
-    db.Location.addLocation(req.body, req.session.userID).then(function(datas) {
-        console.log(datas[0]);
-        db.HappyHour.addHappyHour(req.body, datas[0].id, datas[0].contributor_id).then(function() {
-            res.redirect('/home')
-        })
-    })
 });
+
+router.post('/addhh', function(req, res) {
+    db.Location.addLocation(req.body, req.session.userID)
+    .then(function(datas) {
+        var days = req.body.day
+        console.log(days);
+        days.forEach(function(day){
+            db.HappyHour.addHappyHour(req.body, datas[0].id, datas[0].contributor_id, day)
+        })
+        // db.HappyHour.addHappyHour(req.body, datas[0].id, datas[0].contributor_id, day)
+        res.redirect('/home');
+    });
+});
+
 
 module.exports = router;

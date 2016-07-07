@@ -63,6 +63,7 @@ ALTER TABLE favorite ADD CONSTRAINT favorite_location
 ALTER TABLE happy_hour ADD CONSTRAINT day_time_location
     FOREIGN KEY (location_id)
     REFERENCES location (id)
+    ON DELETE CASCADE
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
@@ -80,6 +81,7 @@ ALTER TABLE favorite ADD CONSTRAINT favorite_contributor
 ALTER TABLE happy_hour ADD CONSTRAINT happy_hour_contributor
     FOREIGN KEY (contributor_id)
     REFERENCES contributor (id)
+    ON DELETE CASCADE
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
@@ -88,6 +90,7 @@ ALTER TABLE happy_hour ADD CONSTRAINT happy_hour_contributor
 ALTER TABLE location ADD CONSTRAINT location_contributor
     FOREIGN KEY (contributor_id)
     REFERENCES contributor (id)
+    ON DELETE CASCADE
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
@@ -96,6 +99,7 @@ ALTER TABLE location ADD CONSTRAINT location_contributor
 ALTER TABLE location ADD CONSTRAINT location_neighborhood
     FOREIGN KEY (neighborhood_name)
     REFERENCES neighborhood (name)
+    ON DELETE CASCADE
     NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
