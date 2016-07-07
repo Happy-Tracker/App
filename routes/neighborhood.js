@@ -6,25 +6,22 @@ var localAuth = require('../auth/localAuth');
 var async = require('async');
 
 router.get('/:name', localAuth.isLoggedIn, function(req, res){
-    db.Contributor.getContributorById(req.session.userID).then(currentUser =>{
-        db.HappyHour.getInfoByHoodName(req.params.name)
-            .then(list => {
-          splitList = list.reduce((result, item, i) => {
-              var index = Math.floor(i / 4);
-              result[index] = result[index] || [];
-              result[index].push(item);
-              return result;
-          }, []);
-                res.render('neighborhood', {
-                    email: currentUser.email,
-                    api: process.env.GOOGLE_API_KEY,
-                    sessionId: req.session.userID,
-                    happyhours: splitList,
-                    thisNeighborhood: req.params.name
-                });
+    db.HappyHour.getInfoByHoodName(req.params.name)
+        .then(list => {
+      splitList = list.reduce((result, item, i) => {
+          var index = Math.floor(i / 4);
+          result[index] = result[index] || [];
+          result[index].push(item);
+          return result;
+      }, []);
+            res.render('neighborhood', {
+                email: req.session.email,
+                api: process.env.GOOGLE_API_KEY,
+                sessionId: req.session.userID,
+                happyhours: splitList,
+                thisNeighborhood: req.params.name
             });
-
-    });
+        });
 });
 
 router.get('/:name', function(req, res) {

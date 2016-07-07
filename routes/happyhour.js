@@ -6,16 +6,14 @@ var localAuth = require('../auth/localAuth');
 require('dotenv').config();
 
 router.get('/:id', localAuth.isLoggedIn, function(req, res) {
-    db.Contributor.getContributorById(req.session.userID).then(currentUser =>{
-        db.HappyHour.getHappyHourInfo(req.params.id)
-        .then(function(data) {
-            res.render('happyhour', {
-                loc_id:req.params.id,
-                email:currentUser.email,
-                sessionId: req.session.userID,
-                info: data[0],
-                days: data
-            });
+    db.HappyHour.getHappyHourInfo(req.params.id)
+    .then(function(data) {
+        res.render('happyhour', {
+            loc_id:req.params.id,
+            email:req.session.email,
+            sessionId: req.session.userID,
+            info: data[0],
+            days: data
         });
     });
 });

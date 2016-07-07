@@ -7,20 +7,18 @@ var async = require('async');
 
 // On home: authenticate,
 router.get('/', localAuth.isLoggedIn, function(req, res) {
-    db.Contributor.getContributorById(req.session.userID).then(currentUser =>{
-        db.Neighborhood.getNeighborhoods()
-        .then(neighborhoods => {
-            var splitHoods = neighborhoods.reduce((result, item, i) => {
-                var index = Math.floor(i / 4);
-                result[index] = result[index] || [];
-                result[index].push(item);
-                return result;
-            }, []);
-            res.render('home', {
-                email: currentUser.email,
-                sessionId: req.session.userID,
-                neighborhood: splitHoods
-            });
+    db.Neighborhood.getNeighborhoods()
+    .then(neighborhoods => {
+        var splitHoods = neighborhoods.reduce((result, item, i) => {
+            var index = Math.floor(i / 4);
+            result[index] = result[index] || [];
+            result[index].push(item);
+            return result;
+        }, []);
+        res.render('home', {
+            email: req.session.email,
+            sessionId: req.session.userID,
+            neighborhood: splitHoods
         });
     });
 });
