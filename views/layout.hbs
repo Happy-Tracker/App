@@ -56,6 +56,10 @@
                     <input type="text" name="name" id="venue_input" class="add-input" placeholder="Venue Name">
                   </fieldset>
                   <fieldset class="form-group">
+                    <label for="address_input">Address&colon;</label>
+                    <input name="address" id="address_input" placeholder="Venue Address" class="add-input"></input>
+                  </fieldset>
+                  <fieldset class="form-group">
                     <label for="url_input">Venue URL&colon;</label>
                     <input type="url" name="url" id="url_input" placeholder="Paste Venue URL Here" class="add-input">
                   </fieldset>
@@ -73,11 +77,6 @@
                       {{/each}}
                     </select>
                   </fieldset>
-                  <fieldset class="form-group">
-                    <label for="address_input">Address&colon;</label>
-                    <input name="address" id="address_input" placeholder="Venue Address" class="add-input"></input>
-                  </fieldset>
-                  <div class="table-responsive">
                     <table>
                       <tr>
                         <th>Day&colon;</th>
@@ -122,7 +121,6 @@
                         </td>
                       </tr>
                     </table>
-                  </div>
               </section>
               <footer class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
