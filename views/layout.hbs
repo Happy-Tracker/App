@@ -77,50 +77,30 @@
                       {{/each}}
                     </select>
                   </fieldset>
-                    <table>
-                      <tr>
-                        <th>Day&colon;</th>
-                        <th>Start Time&colon;</th>
-                        <th>End Time&colon;</th>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Sunday"> Sun</label>
-                        </td>
-                        <td><input type="time" name="start" value="17:00" class="form-control" id="start_time"></td>
-                        <td><input type="time" name="end" value="17:00" class="form-control" id="end_time"></td>
-                      </tr>
-                      <tr>
-                        <td><label>
-                          <input type="checkbox" name="day" value="Monday"> Mon</label>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Tuesday"> Tues</label>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Wednesday"> Wed</label>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Thursday"> Thurs</label>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Friday"> Fri</label>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <label><input type="checkbox" name="day" value="Saturday"> Sat</label>
-                        </td>
-                      </tr>
-                    </table>
+                  <fieldset>
+                    <div class="row">
+                      <h4 class="col-sm-4">Day&colon;</h4>
+                      <h4 class="col-sm-4">Start Time&colon;</h4>
+                      <h4 class="col-sm-4">End Time&colon;</h4>
+                    </div>
+                    <div class="row">
+                      <ul class="col-sm-4">
+                        <li><label><input type="checkbox" name="day" value="Sunday"> Sunday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Monday"> Monday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Tuesday"> Tuesday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Wednesday"> Wedday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Thursday"> Thursday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Friday"> Friday</label></li>
+                        <li><label><input type="checkbox" name="day" value="Saturday"> Satday</label></li>
+                      </ul>
+                      <div class="col-sm-4">
+                        <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                      </div>
+                    </div>
+                  </fieldset>
               </section>
               <footer class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
