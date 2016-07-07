@@ -36,22 +36,28 @@ module.exports = {
         },
         getLocationsByNeighborhood: name => knex('location').where('neighborhood_name', name)
     },
+
     Neighborhood: {
         getNeighborhoods: () => knex('neighborhood').orderBy('name', 'asc'),
         findNeighborhoodsByName: name => knex('neighborhood').where('name', name)
     },
+
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
             .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName)),
-        addHappyHour: (body, id, contributor, day) => {
+
+        addHappyHour: (body, id, contributor, day, callback) => {
             knex('happy_hour').insert({
                 start: body.start || '0600',
                 end: body.end || '0600',
                 day: day || 'none',
                 location_id: id,
                 contributor_id: contributor
+            }).then(function() {
+              callback();
             });
         },
+
         getHappyHourInfo: id =>
             knex('location').join('happy_hour', 'location_id', 'location.id')
             .select().where({'location.id': id})
