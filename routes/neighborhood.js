@@ -20,8 +20,7 @@ router.get('/:name', localAuth.isLoggedIn, function(req, res){
                     api: process.env.GOOGLE_API_KEY,
                     sessionId: req.session.userID,
                     happyhours: splitList,
-                    thisNeighborhood: req.params.name,
-                    neighborhood: allHoods
+                    thisNeighborhood: req.params.name
                 });
             });
 
