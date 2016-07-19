@@ -6,14 +6,18 @@ var localAuth = require('../auth/localAuth');
 require('dotenv').config();
 
 router.get('/:id', localAuth.isLoggedIn, function(req, res) {
-    db.HappyHour.getHappyHourInfo(req.params.id)
-    .then(function(data) {
+    Promise.all([
+        db.HappyHour.getHappyHourInfo(req.params.id),
+        db.Neighborhood.sortNeighborhoodsInGrid()
+    ]).then(function(data){
+      console.log(data[0][0]);
         res.render('happyhour', {
             loc_id:req.params.id,
             email:req.session.email,
             sessionId: req.session.userID,
-            info: data[0],
-            days: data
+            info: data[0][0],
+            days: data[0],
+            neighborhood: data[1]
         });
     });
 });

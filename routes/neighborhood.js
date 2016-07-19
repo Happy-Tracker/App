@@ -6,22 +6,19 @@ var localAuth = require('../auth/localAuth');
 var async = require('async');
 
 router.get('/:name', localAuth.isLoggedIn, function(req, res){
-    db.HappyHour.getInfoByHoodName(req.params.name)
-        .then(list => {
-      splitList = list.reduce((result, item, i) => {
-          var index = Math.floor(i / 4);
-          result[index] = result[index] || [];
-          result[index].push(item);
-          return result;
-      }, []);
+    Promise.all([
+      db.HappyHour.sortLocationsInGrid(req.params.name),
+      db.Neighborhood.sortNeighborhoodsInGrid()
+    ]).then(function(data){
             res.render('neighborhood', {
                 email: req.session.email,
                 api: process.env.GOOGLE_API_KEY,
                 sessionId: req.session.userID,
-                happyhours: splitList,
+                happyhours: data[0],
+                neighborhood: data[1],
                 thisNeighborhood: req.params.name
             });
-        });
+      })
 });
 
 router.get('/:name', function(req, res) {
@@ -32,14 +29,6 @@ router.get('/:name', function(req, res) {
                 neighborhood: neighborhoods
             });
         });
-});
-
-router.get('/get/locations', function(req, res) {
-    db.Location.getLocations().then(allLocations => {
-        db.Location.getLocationsByNeighborhood(allLocations[0].neighborhood_name).then(specificLocations => {
-            res.json(specificLocations);
-        });
-    });
 });
 
 router.post('/addhh', function(req, res) {
@@ -57,6 +46,25 @@ router.post('/addhh', function(req, res) {
             if (err) return next(err);
         });
         res.redirect('/home');
+    });
+});
+
+router.get('/:id/edit', function(req,res){
+  Promise.all([
+    queries.Books.getBookById(req.params.id),
+    queries.Books.getAuthorsByBookId(req.params.id),
+    queries.Books.getGenres()
+  ]).
+  then(function(data) {
+    res.render('books/edit-book', {book: data[0], authors: data[1], genres:data[2]});
+  });
+})
+
+router.get('/get/locations', function(req, res) {
+    db.Location.getLocations().then(allLocations => {
+        db.Location.getLocationsByNeighborhood(allLocations[0].neighborhood_name).then(specificLocations => {
+            res.json(specificLocations);
+        });
     });
 });
 

@@ -37,8 +37,8 @@ CREATE TABLE location (
     address varchar(255)  NOT NULL,
     url varchar(255)  NOT NULL,
     image_url text  NOT NULL,
-    contributor_id int  NOT NULL,
     neighborhood_name varchar(255)  NOT NULL,
+    contributor_id int NOT NULL,
     CONSTRAINT location_pk PRIMARY KEY (id)
 );
 

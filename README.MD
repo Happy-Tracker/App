@@ -7,7 +7,7 @@ Happy Tracker is an app to help you find happy hours in Denver.
 Registered users can Add and Favorite happy hours.
 
 Find it live on the web here:    
-http://happy-tracker.herokuapp.com
+https://happytracker.herokuapp.com/
 
 ## Created By
 

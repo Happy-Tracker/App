@@ -71,9 +71,9 @@
                     <label for="neighborhoods">Select Neighborhood&colon;</label>
                     <select name="neighborhood_name" class="form-control" id="neighborhoods">
                       {{#each neighborhood}}
-                        {{#each this}}
-                          <option value="{{neighborhood.name}}">{{this.name}}</option>
-                        {{/each}}
+                        <!-- {{#each this}} -->
+                          <option value="{{name}}">{{name}}</option>
+                        <!-- {{/each}} -->
                       {{/each}}
                     </select>
                   </fieldset>

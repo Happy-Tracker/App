@@ -24,7 +24,7 @@ module.exports = {
     },
     Location: {
         getLocations: () => knex('location'),
-        addLocation: (body, id) => {
+        addLocation: function(body, id){
             return knex('location').insert({
                 name: body.name,
                 address: body.address,
@@ -39,13 +39,36 @@ module.exports = {
 
     Neighborhood: {
         getNeighborhoods: () => knex('neighborhood').orderBy('name', 'asc'),
-        findNeighborhoodsByName: name => knex('neighborhood').where('name', name)
+        findNeighborhoodsByName: name => knex('neighborhood').where('name', name),
+
+        sortNeighborhoodsInGrid: function(name){
+          return this.getNeighborhoods()
+          .then((hoods) =>{
+            return splitList = hoods.reduce((result, item, i) => {
+                var index = Math.floor(i / 4);
+                result[index] = result[index] || [];
+                result[index].push(item);
+                return result;
+            }, [])
+          })
+        },
     },
 
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
             .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName)),
 
+        sortLocationsInGrid: function(name){
+            return this.getInfoByHoodName(name)
+          .then((happyHours) =>{
+              return splitList = happyHours.reduce((result, item, i) => {
+                  var index = Math.floor(i / 4);
+                  result[index] = result[index] || [];
+                  result[index].push(item);
+                  return result;
+              }, [])
+          })
+        },
         addHappyHour: (body, id, contributor, day, callback) => {
             knex('happy_hour').insert({
                 start: body.start || '0600',

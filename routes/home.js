@@ -5,16 +5,25 @@ var localAuth = require('../auth/localAuth');
 //async is for the add form and adding multiple happy hours at a time
 var async = require('async');
 
+// login
+router.post('/login', function(req, res) {
+  localAuth.passport.authenticate('local', (err, user) => {
+    if (err) {
+      res.render('home', {
+        error: err
+      });
+    } else if (user) {
+      req.session.userID = user.id;
+      req.session.email = user.email;
+      res.redirect('/home');
+    }
+  })(req, res);
+});
+
 // On home: authenticate,
 router.get('/', localAuth.isLoggedIn, function(req, res) {
-    db.Neighborhood.getNeighborhoods()
-    .then(neighborhoods => {
-        var splitHoods = neighborhoods.reduce((result, item, i) => {
-            var index = Math.floor(i / 4);
-            result[index] = result[index] || [];
-            result[index].push(item);
-            return result;
-        }, []);
+    db.Neighborhood.sortNeighborhoodsInGrid()
+    .then(function(splitHoods){
         res.render('home', {
             email: req.session.email,
             sessionId: req.session.userID,
@@ -23,20 +32,6 @@ router.get('/', localAuth.isLoggedIn, function(req, res) {
     });
 });
 
-// login
-router.post('/login', function(req, res) {
-    localAuth.passport.authenticate('local', (err, user) => {
-        if (err) {
-            res.render('home', {
-                error: err
-            });
-        } else if (user) {
-            req.session.userID = user.id;
-            req.session.email = user.email;
-            res.redirect('/home');
-        }
-    })(req, res);
-});
 
 router.get('/logout', (req, res) => {
     req.session = null;
@@ -50,6 +45,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res) {
             });
         } else {
             localAuth.addContributor(req.body).then(user => {
+                req.session.email = user.email;
                 req.session.userID = user.id;
                 res.redirect('/home');
             });
@@ -64,6 +60,7 @@ function allDone() {
 router.post('/addhh', function(req, res) {
     db.Location.addLocation(req.body, req.session.userID)
     .then(function(datas) {
+      console.log(datas);
       var days = req.body.day;
       // 1st para in async.each() is the array of items
         async.each(days, function(day, callback){
