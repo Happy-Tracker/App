@@ -58,6 +58,7 @@ function allDone() {
 router.post('/addhh', function(req, res) {
     db.Location.addLocation(req.body, req.session.userID)
     .then(function(datas) {
+      console.log(datas);
       var days = req.body.day;
       // 1st para in async.each() is the array of items
         async.each(days, function(day, callback){

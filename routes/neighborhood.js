@@ -21,18 +21,6 @@ router.get('/:name', localAuth.isLoggedIn, function(req, res){
       })
 });
 
-router.get('/:id/edit', function(req,res){
-  Promise.all([
-    queries.Books.getBookById(req.params.id),
-    queries.Books.getAuthorsByBookId(req.params.id),
-    queries.Books.getGenres()
-  ]).
-  then(function(data) {
-    res.render('books/edit-book', {book: data[0], authors: data[1], genres:data[2]});
-  });
-})
-
-
 router.get('/:name', function(req, res) {
     db.Neighborhood.getNeighborhoods()
         .then(neighborhoods => {
@@ -41,14 +29,6 @@ router.get('/:name', function(req, res) {
                 neighborhood: neighborhoods
             });
         });
-});
-
-router.get('/get/locations', function(req, res) {
-    db.Location.getLocations().then(allLocations => {
-        db.Location.getLocationsByNeighborhood(allLocations[0].neighborhood_name).then(specificLocations => {
-            res.json(specificLocations);
-        });
-    });
 });
 
 router.post('/addhh', function(req, res) {
@@ -66,6 +46,25 @@ router.post('/addhh', function(req, res) {
             if (err) return next(err);
         });
         res.redirect('/home');
+    });
+});
+
+router.get('/:id/edit', function(req,res){
+  Promise.all([
+    queries.Books.getBookById(req.params.id),
+    queries.Books.getAuthorsByBookId(req.params.id),
+    queries.Books.getGenres()
+  ]).
+  then(function(data) {
+    res.render('books/edit-book', {book: data[0], authors: data[1], genres:data[2]});
+  });
+})
+
+router.get('/get/locations', function(req, res) {
+    db.Location.getLocations().then(allLocations => {
+        db.Location.getLocationsByNeighborhood(allLocations[0].neighborhood_name).then(specificLocations => {
+            res.json(specificLocations);
+        });
     });
 });
 

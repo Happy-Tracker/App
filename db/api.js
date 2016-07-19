@@ -24,7 +24,7 @@ module.exports = {
     },
     Location: {
         getLocations: () => knex('location'),
-        addLocation: (body, id) => {
+        addLocation: function(body, id){
             return knex('location').insert({
                 name: body.name,
                 address: body.address,
