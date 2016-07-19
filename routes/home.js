@@ -5,6 +5,21 @@ var localAuth = require('../auth/localAuth');
 //async is for the add form and adding multiple happy hours at a time
 var async = require('async');
 
+// login
+router.post('/login', function(req, res) {
+  localAuth.passport.authenticate('local', (err, user) => {
+    if (err) {
+      res.render('home', {
+        error: err
+      });
+    } else if (user) {
+      req.session.userID = user.id;
+      req.session.email = user.email;
+      res.redirect('/home');
+    }
+  })(req, res);
+});
+
 // On home: authenticate,
 router.get('/', localAuth.isLoggedIn, function(req, res) {
     db.Neighborhood.sortNeighborhoodsInGrid()
@@ -17,20 +32,6 @@ router.get('/', localAuth.isLoggedIn, function(req, res) {
     });
 });
 
-// login
-router.post('/login', function(req, res) {
-    localAuth.passport.authenticate('local', (err, user) => {
-        if (err) {
-            res.render('home', {
-                error: err
-            });
-        } else if (user) {
-            req.session.userID = user.id;
-            req.session.email = user.email;
-            res.redirect('/home');
-        }
-    })(req, res);
-});
 
 router.get('/logout', (req, res) => {
     req.session = null;
@@ -44,6 +45,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res) {
             });
         } else {
             localAuth.addContributor(req.body).then(user => {
+                req.session.email = user.email;
                 req.session.userID = user.id;
                 res.redirect('/home');
             });
