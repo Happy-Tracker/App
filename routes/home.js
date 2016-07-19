@@ -7,14 +7,8 @@ var async = require('async');
 
 // On home: authenticate,
 router.get('/', localAuth.isLoggedIn, function(req, res) {
-    db.Neighborhood.getNeighborhoods()
-    .then(neighborhoods => {
-        var splitHoods = neighborhoods.reduce((result, item, i) => {
-            var index = Math.floor(i / 4);
-            result[index] = result[index] || [];
-            result[index].push(item);
-            return result;
-        }, []);
+    db.Neighborhood.sortNeighborhoodsInGrid()
+    .then(function(splitHoods){
         res.render('home', {
             email: req.session.email,
             sessionId: req.session.userID,

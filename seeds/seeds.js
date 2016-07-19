@@ -173,13 +173,6 @@ exports.seed = function(knex, Promise) {
                     }),
                     knex('happy_hour').insert({
                         day: 'Sunday',
-                        start: '17:00',
-                        end: '19:00',
-                        location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
-                        contributor_id: findEmail('foo2@bar.com', data[0])
-                    }),
-                    knex('happy_hour').insert({
-                        day: 'Sunday',
                         start: '15:00',
                         end: '18:00',
                         location_id: findLocation('Brider', data[1]),
